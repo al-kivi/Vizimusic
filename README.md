@@ -1,4 +1,6 @@
-## Vizimusic - Ramaze demo that provides a shopping cart application. The Visimusic application combines the Viziframe framework with the R4Rmusic application as described in David Blacks 'Ruby for Rails' book.
+## Vizimusic - Ramaze demo that provides a shopping cart application. 
+
+The Visimusic application combines the Viziframe framework with the R4Rmusic application as described in David Black's 'Ruby for Rails' book.
 
 Before working with this application, developers are encouraged to read David Black's book.
 
