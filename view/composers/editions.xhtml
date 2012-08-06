@@ -1,0 +1,6 @@
+<ul>
+  <?r @composer.editions.map do |edition| ?>
+    <li>#{Editions.a(edition.nice_title, :show, edition.id)}
+      (#{edition.publisher.name}, #{edition.year})</li>
+  <?r end ?>
+</ul>

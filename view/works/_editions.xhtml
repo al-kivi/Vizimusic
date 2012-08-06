@@ -1,0 +1,8 @@
+<ul>
+  <?r @work.editions.each do |ed| ?>
+    <li>
+      #{Editions.a("#{ed.publisher.name} (#{ed.year})", :show, ed.id)}
+      #{ed.description}
+    </li>
+  <?r end ?>
+</ul>

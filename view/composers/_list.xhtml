@@ -1,0 +1,5 @@
+<ul>
+  <?r @composers.each do |composer| ?>
+    <li>#{Composers.a(composer.last_name, :show, composer.id)}
+  <?r end ?>
+</ul>

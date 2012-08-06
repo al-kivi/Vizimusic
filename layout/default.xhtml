@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <title></title>
+    <link href='/css/styles.css' rel='stylesheet' />
+  </head>
+  <body>
+    <div id='wrapper'>
+      <div id='toptable' width='800'>
+        <table>
+          <tr height='20'>
+            <td class='small left flash' height='10' width='300'>
+              #{flashbox}
+            </td>
+            <td class='small' height='10' width='300'></td>
+            <td class='small right' height='10' width='250'>
+              <?r if logged_in? ?>
+                User is [#{session[:email]}]
+                <?r @c = User[:email=>session[:email]] ?>
+                <?r if @c.open_orders.count > 0 ?>
+                  |
+                  <a href="/users/view_cart">Show cart</a>
+                <?r end ?>
+                |
+                <a href="/users/logout">Logout</a>
+              <?r else ?>
+                <a href="/users/login">Login</a>
+                |
+                <a href="/users/register">Register</a>
+              <?r end ?>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='menutable'>
+        <table>
+          <tr>
+            <td width='420'>
+              <div class='large'>
+                Vizimusic
+              </div>
+            </td>
+            <td width='100'>
+              <a href='/'>Home</a>
+            </td>
+            <td width='100'>
+              <a href='/about'>About</a>
+            </td>
+            <td width='100'>
+              <a href='/posts'>Post</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='bodytable'>
+        <table width='100%' height=@height>
+          <tr>
+            <td width=#{@lwidth} height=100%>
+              <div id='left_bar'>
+                <h1>Left Bar</h1>
+                This is the left bar of the webpage
+              </div>
+            </td>
+            <td height=100%>
+              <div id='content_bar'>
+                #{@content}
+              </div>
+            </td>
+            <?r if @rwidth != '0' ?>
+              <td width=#{@rwidth} height=100%>
+                <div id='right_bar'>
+                  <h1>Right Bar</h1>
+                  This is the right bar of the webpage
+                  <br />
+                  <br />
+                  <a href='/rssfeeds/feed.atom'>
+                    <img alt='Subscribe to RSS Feed' src='/images/rssfeed.png' title='' />
+                  </a>
+                </div>
+              </td>
+            <?r end ?>
+          </tr>
+        </table>
+      </div>
+      <br />
+      <div id='footer'>
+        Powered by Ramaze
+      </div>
+    </div>
+  </body>
+</html>

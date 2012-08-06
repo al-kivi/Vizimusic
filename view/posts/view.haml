@@ -1,0 +1,44 @@
+%article
+  %header
+    %h1
+      #{@post.title}
+    %h3
+      Posted by: #{@post.user.username}
+      &nbsp;&nbsp;
+      Created at: #{@post.created_at.strftime('%b-%m-%Y, %H:%M')}
+    %p
+      #{@post.body}
+    - if logged_in?
+      | #{Posts.a('Edit', :edit, @post.id)}
+      | #{Posts.a('Delete', :delete, @post.id)}
+    %hr
+    %h2
+      Comments
+    - if !@post.comments.empty?
+      - @post.comments.each do |comment|
+        %article
+          %h3
+            Comment by: #{comment.username}
+            &nbsp;&nbsp;
+            Created at:
+            #{comment.created_at.strftime('%b-%m-%Y, %H:%M')}
+          %p
+            #{comment.comment}
+    - else
+      %p
+        No comments have been added yet.
+    %h2
+      Add new comment
+    %form{:action => Posts.r(:add_comment), :method=>'POST'}
+      %fieldset
+        %input{:type => 'hidden', :name => 'post_id', :value =>"#{@post.id}"}
+        %br
+        - unless logged_in?
+          %label{:for => "username"} Username:
+          %input{:type => "text", :name => "username", :maxlength => 50}
+          %br
+        %label{:for => "comment"} Comment:
+        %textarea{:name => "comment", :rows =>7, :cols => 80, :placeholder => "Enter comment here"}
+        %br
+        %br
+        %input{:type=>"submit", :value=>"Submit"}

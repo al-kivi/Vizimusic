@@ -1,0 +1,28 @@
+- if !@posts.empty?
+  - @posts.each do |post|
+    %article
+      %header
+        %h1
+          #{Posts.a(post.title, :view, post.id)}
+        %p
+          Posted by: #{post.user.username}
+          &nbsp;&nbsp;
+          Created at: #{post.created_at.strftime('%b-%m-%Y, %H:%M')}
+        %p
+          #{post.body[0..125]}
+          \...
+        %p
+          #{post.comments.length} comment(s)
+          - if logged_in?
+            | #{Posts.a('Edit', :edit, post.id)}
+            | #{Posts.a('Delete', :delete, post.id)}
+        %hr{:size => "1", :color => 'grey'}
+  - if @posts.respond_to?(:navigation) and @posts.page_count > 1
+    = @posts.navigation
+    %br
+- else
+  No posts were found.
+  %br
+
+- if logged_in?
+  #{Posts.a('New Post', :new)}

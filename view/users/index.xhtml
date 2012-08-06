@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th width='100'>EMail .....</th>
+      <th width='100'>Username</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?r @users.each do |user| ?>
+      <tr>
+        <td>#{Vizi::Users.a(user.email, :edit, user.id)}</td>
+        <td>#{user.username}</td>
+        <td>#{Vizi::Users.a('Delete', :delete, user.id)}</td>
+      </tr>
+    <?r end ?>
+  </tbody>
+</table>

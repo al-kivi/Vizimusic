@@ -1,0 +1,33 @@
+<br />
+<table border="1" class="smalltable">
+  <tr>
+    <th align="left">Title</th>
+    <th align="left">Composer</th>
+    <th>Publisher</th>
+    <th>Price</th>
+    <th>Copies</th>
+    <th>Subtotal</th>
+  </tr>
+
+<?r @c = User[:email=>session[:email]] ?>
+<?r @c.editions_on_order.each do |edition| ?>
+  <?r count = @c.copies_of(edition) ?>
+  <tr>
+    <td>#{Editions.a(edition.nice_title, :show, edition.id)}</td>
+    <td>
+      <?r edition.composers.each do |composer| ?>
+        #{Composers.a(composer.whole_name, :show, composer.id)}   
+      <?r end ?>
+    </td>
+    <td>#{edition.publisher.name}</td>
+    <td align="right">#{two_dec(edition.price)}</td>
+    <td align="right">#{count}</td>
+    <td align="right">#{two_dec(edition.price * count)}</td>
+  </tr>
+<?r end ?>
+  <tr>
+    <td colspan="5">TOTAL</td>
+    <td align="right">#{two_dec(@c.balance)}</td>
+  </tr>
+</table>
+<p>#{Users.a("Complete purchases", :check_out, user.id)}</p>

@@ -1,0 +1,27 @@
+<?r if @c ?>
+  <h1>Welcome, #{@c.first_name}.</h1>
+<?r end ?>
+<h2 class="info">Browse works by...</h2>
+
+<table>
+  <tr>
+    <th>Period</th>
+    <th>Composer</th>
+    <th>Instrument</th>
+  </tr>
+  <tr>
+    <td valign="top">
+      #{render_partial :period_list}
+    </td>
+    <td valign="top">
+      #{render_partial :composer_list}
+    </td>
+    <td valign="top">
+      #{render_partial :instrument_list}
+    </td>
+  </tr>
+</table>
+
+<?r if @c ?>
+  #{render_partial :favorites}
+<?r end ?>

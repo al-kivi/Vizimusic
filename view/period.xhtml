@@ -1,0 +1,21 @@
+<table border="1">
+  <tr>
+    <th>Title (Publisher, Year)</th>
+    <th>Composer(s)</th>
+  </tr>
+  <tr>
+
+  <?r @editions.each do |edition| ?>
+    <tr>
+      <td>
+        #{Editions.a(edition.nice_title, :show, edition.id)}
+      </td>
+      <td>
+        <?r edition.composers.each do |composer| ?>
+          #{Composers.a(composer.whole_name, :show, composer.id)}
+        <?r end ?>
+      </td>
+      </tr>
+  <?r end ?>
+  </tr>
+</table>

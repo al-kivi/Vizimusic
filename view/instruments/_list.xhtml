@@ -1,0 +1,5 @@
+<ul>
+  <?r @instruments.each do |instrument| ?>
+    <li>#{Instruments.a(instrument.name, :show, instrument.id)}
+  <?r end ?>
+</ul>

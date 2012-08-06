@@ -1,0 +1,57 @@
+<article>
+  <header>
+    <h1>
+      #{@post.title}
+    </h1>
+    <h3>
+      Posted by: #{@post.user.username}
+      &nbsp;&nbsp;
+      Created at: #{@post.created_at.strftime('%b-%m-%Y, %H:%M')}
+    </h3>
+  </header>
+  <p>
+    #{@post.body}
+  </p>
+  <?r if logged_in? ?>
+    #{Posts.a('Edit', :edit, @post.id)}
+    #{Posts.a('Delete', :delete, @post.id)}
+  <?r end ?>
+</article>
+
+<div id="comments">
+  <hr />
+  <h2>Comments</h2>
+  <?r if !@post.comments.empty? ?>
+    <?r @post.comments.each do |comment| ?>
+      <article>
+        <h3>
+          Comment by: #{comment.username}
+          &nbsp;&nbsp;
+          Created at:
+          #{comment.created_at.strftime('%b-%m-%Y, %H:%M')}
+        </h3>
+        <h3>#{comment.comment}</h3>
+      </article>
+    <?r end ?>
+  <?r else ?>
+    <p>No comments have been added yet.</p>
+  <?r end ?>
+  
+  <h2>Add new comment</h2>
+  <form action=Posts.r(:add_comment) method='POST'>
+    <fieldset>
+      <input name='post_id' type='hidden' value='4' />
+      <br />
+      <?r unless logged_in? ?>
+        <label for='username'>Username:</label>
+        <input maxlength='50' name='username' type='text' />
+        <br />
+      <?r end ?>
+      <label for='comment'>Comment:</label>
+      <textarea cols='80' name='comment' placeholder='Enter comment here' rows='7'></textarea>
+      <br />
+      <br />
+      <input type='submit' value='Submit' />
+    </fieldset>
+  </form>
+</div>

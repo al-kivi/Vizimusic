@@ -1,0 +1,39 @@
+<?r if !@posts.empty? ?>
+  <?r @posts.each do |post| ?>
+    <article>
+      <header>
+        <h1>#{Posts.a(post.title, :view, post.id)}</h1>
+        <p>
+          Posted by: #{post.user.username}
+          &nbsp;&nbsp;
+          Created at: #{post.created_at.strftime('%b-%m-%Y, %H:%M')}
+        </p>
+      </header>
+      <p>
+        #{post.body[0..125]}
+        ...
+      </p>
+      <p>
+        #{post.comments.length} comment(s)
+        <?r if logged_in? ?>
+          | #{Posts.a('Edit', :edit, post.id)}
+          | #{Posts.a('Delete', :delete, post.id)}
+        <?r end ?>
+      </p>
+    </article>
+    <hr size = "1", color = 'grey'>
+  <?r end ?>
+  
+  <?r if @posts.respond_to?(:navigation) and @posts.page_count > 1 ?>
+    #{@posts.navigation}
+  <?r end ?>
+
+  <br />
+<?r else ?>
+  No posts were found.
+  <br />
+<?r end ?>
+
+<?r if logged_in? ?>
+  <p>#{Posts.a('New Post', :new)}</p>
+<?r end ?>

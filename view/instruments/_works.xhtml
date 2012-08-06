@@ -1,0 +1,5 @@
+<ul>
+  <?r @instrument.works.each do |work| ?>
+    <li>#{Works.a(work.composer.whole_name, :show, work.id)}
+  <?r end ?>
+</ul>

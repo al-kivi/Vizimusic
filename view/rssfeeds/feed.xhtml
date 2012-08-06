@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en" xml:base="http://demo.vizitrax.com">
+  <id>tag:ramaze-blog</id>
+  <title>Viziframe Blog</title>
+  <updated>#{@posts.last.created_at.strftime('%Y-%m-%dT%H:%M:%SZ')}</updated>
+
+  <?r @posts.each do |post| ?>
+    <entry>
+      <id>tag:ramaze-blog,#{post.id}</id>
+      <title>#{post.title}</title>
+      <author>
+          <name>#{post.user.username}</name>
+      </author>
+      <updated>#{post.created_at.strftime('%Y-%m-%dT%H:%M:%SZ')}</updated>
+      <content type="xhtml">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          #{post.body}
+        </div>
+      </content>
+    </entry>
+  <?r end ?>
+</feed>

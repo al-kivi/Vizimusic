@@ -1,0 +1,13 @@
+<h2 class="info">Your favorites!</h2>
+
+<?r fav_composers = @c.favorites :composer, :count => 3 ?>
+<?r fav_instruments = @c.favorites :instrument,:count => 3 ?>
+
+<ul>
+  <?r fav_composers.each do |composer| ?>
+    <li>#{Composers.a(composer.whole_name, :show, composer.id)}</li>
+  <?r end ?>
+  <?r fav_instruments.each do |instrument| ?>
+    <li>#{Instruments.a(instrument.name, :show, instrument.id)}</li>
+  <?r end ?>
+</ul>

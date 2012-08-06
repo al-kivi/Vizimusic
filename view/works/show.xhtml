@@ -1,0 +1,8 @@
+<?r @page_title = "Editions of #{@work.title}" ?>
+<h2 class="info">
+  #{@work.title} ( #{@work.year} ) by
+  #{Composers.a(@work.composer.whole_name, :show, @work.composer.id)}
+</h2>
+
+#{render_partial :_editions}
+

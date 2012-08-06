@@ -1,0 +1,20 @@
+<br />
+
+<form action=Posts.r(:save) method='POST'>
+  <fieldset>
+    <input name='id' type='hidden' value='4' />
+    <br />
+    <label for='title'>Title:</label>
+    <input maxlength='50' name='title' type='text' value='#{@post.title}' />
+    <br />
+    <label for='body'>Body:</label>
+    <textarea cols='60' name='body' placeholder='Content' rows='10'>#{@post.body}</textarea>
+    <br />
+    <br />
+    <p>
+      <input name='submit' type='submit' value='Submit' />
+      or
+      <input name='cancel' type='submit' value='Cancel' />
+    </p>
+  </fieldset>
+</form>

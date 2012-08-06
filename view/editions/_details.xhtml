@@ -1,0 +1,15 @@
+<ul>
+  <li>Edition: #{@edition.description}</li>
+  <li>Publisher: #{@edition.publisher.name}</li>
+  <li>Year: #{@edition.year}</li>
+  <li>Price: #{two_dec(@edition.price)}</li>
+  <?r if session[:email] ?>
+   <li>#{Users.a("Add to cart", :add_to_cart, @edition.id)}</li>
+  <?r end ?> 
+</ul>
+<h2>Contents:</h2>
+<ul>
+  <?r @edition.works.each do |work| ?>
+    <li>#{Works.a(work.nice_title, :show, work.id)} ... (#{Composers.a(work.composer.whole_name, :show, work.composer.id)})</li>
+  <?r end ?>
+</ul>

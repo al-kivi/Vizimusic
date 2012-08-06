@@ -1,0 +1,17 @@
+%br
+%form{:action => Posts.r(:save), :method=>'POST'}
+  %fieldset
+    %input{:type => 'hidden', :name => 'id', :value =>"#{@post.id}"}
+    %br
+    %label{:for => "title"} Title:
+    %input{:type => "text", :name => "title", :maxlength => 50, :value =>"#{@post.title}"}
+    %br
+    %label{:for => "body"} Body:
+    %textarea{:name => "body", :rows =>10, :cols => 60, :placeholder => "Content"}
+      #{@post.body}
+    %br
+    %br
+    %p
+      %input{:type=>"submit", :name => "submit", :value => "Submit"}
+      or
+      %input{:type=>"submit", :name => "cancel", :value => "Cancel"}
